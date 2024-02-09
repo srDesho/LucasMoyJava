@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,16 +11,24 @@ public class Form {
     private JTextField txtName;
     private JList listClients;
     private JButton deleteButton;
-    private List<String> nameList = new ArrayList<String>();
+    private JTextField txtLastName;
+    private JTextField txtEmail;
+    private JTextField txtPhone;
+    private List<Client> nameList = new ArrayList<Client>();
 
     public Form() {
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name = txtName.getText();
-                nameList.add(name);
+                Client client = new Client();
+                client.setName(txtName.getText());
+                client.setLastname(txtLastName.getText());
+                client.setEmail(txtEmail.getText());
+                client.setPhone(txtPhone.getText());
+                nameList.add(client);
                 refreshList();
                 JOptionPane.showMessageDialog(null, "Added success. " );
+                cleanText();
             }
         });
         deleteButton.addActionListener(new ActionListener() {
@@ -34,10 +43,18 @@ public class Form {
     public void refreshList() {
         DefaultListModel data = new DefaultListModel();
         for (int i = 0; i < nameList.size(); i++) {
-            String name = nameList.get(i);
-            data.addElement(name);
+            Client client = nameList.get(i);
+            data.addElement(client.getFullName());
         }
         listClients.setModel(data);
+    }
+
+    public void cleanText() {
+        txtName.setText("");
+        txtLastName.setText("");
+        txtEmail.setText("");
+        txtPhone.setText("");
+
     }
 
 }
