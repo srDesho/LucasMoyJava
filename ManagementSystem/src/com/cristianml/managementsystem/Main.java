@@ -1,3 +1,6 @@
+package com.cristianml.managementsystem;
+import com.cristianml.views.Form;
+
 import javax.swing.*;
 
 public class Main {

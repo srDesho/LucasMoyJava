@@ -1,10 +1,9 @@
+package com.cristianml.models;
+
 public class Client {
     private String name;
     private String lastname;
     private String email;
-
-
-
     private String phone;
 
     public void setName(String name) {
