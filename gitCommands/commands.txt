@@ -6,6 +6,15 @@ git commit -m "first commit"
 git remote add origin https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git
 git push -u origin master
 
+- Eliminar un commit específico
+
+1ro identificamos el id del commit anterior al que queremos eliminar, copiamos y pegamos en el siguiente comando
+git rebase -i identificadorDelCommitAnteriorCopiado
+cambiar pick por drop
+guardar el archivo y nos devolvera a git bash
+presiona
+git push origin nombreRama --force
+
 
 - Other Commands
 
@@ -27,7 +36,7 @@ rm: Nos permite borrar un archivo o carpeta ej: rm NuevoArchivo.txt
 rmdir “nombre del directorio”/: borrar un directorio: Solo funciona con directorios vacíos.
 rm -r ‘nombre de la carpeta’ :me permite eliminar la carpeta y los archivos dentro de ella de forma recursiva.
 cp “nombre del archivo que quremos copiar” “nombre del directorio a donde lo queremos copiar”: nos permite copiar un archivo.
-mv “el directorio de donde queremos mover/el nombre del archivo” “el directorio hacia donde lo queremos mover”: nos permite mover un archivo.
+mv “el directorio de donde queremos mover/el nombre del archivo” “el directorio hacia donde lo queremos mover”: nos permite mover un archivo o cambiar de nombre.
 clear: nos permite limpiar la pantalla.
 history: ver los últimos comandos que ejecutamos y un número especial con el que podemos volver a repetir el comando.
 
@@ -73,7 +82,17 @@ git log												View changes
 git log --summary										View changes (detailed)
 git log --oneline										View changes (briefly)
 git diff [source branch] [target branch]							Preview changes before merging
+git diff --staged										Show changes added to stage
 git revert commitid										Revert commit changes
 git config --global user.name "your_username"							Set globally Username
 git config --global user.email "your_email_address@example.com"					Set globally Email id
 git config --global --list									Get global config
+
+- Ignorar archivos o carpetas
+Desde nuestro editor creamos un archivo dentro de la carpeta de nuestro proyecto que está siendo seguido por git
+Creamos ".gitignore", y dentro de ese archivo agregamos lo que queremos que git ignore, ejemplo:
+
+archivo.txt --------> Nunca agregará el archivo al repositorio.
+nombreCarpeta/ -----> ||	||	||	||	||
+
+Por ultimo agregamos nuestro .gitignore al commit
